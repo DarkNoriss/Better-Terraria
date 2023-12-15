@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://csv6yt43aesbn"]
+
+[ext_resource type="Script" path="res://src/scripts/enemies/mob_template.gd" id="1_qfkco"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7bm5m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fibb"]
+
+[sub_resource type="Animation" id="Animation_ufre4"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dxv0d"]
+_data = {
+"idle": SubResource("Animation_ufre4")
+}
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_y0to5"]
+
+[node name="MOB_TEMPLATE" type="RigidBody2D"]
+script = ExtResource("1_qfkco")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7bm5m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4fibb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dxv0d")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../CollisionShape2D")
+libraries = {
+"": SubResource("AnimationLibrary_dxv0d")
+}
+tree_root = SubResource("AnimationRootNode_y0to5")
+anim_player = NodePath("../AnimationPlayer")
