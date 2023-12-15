@@ -9,6 +9,9 @@ const VELOCITY_POWER: float = 0.9
 const MAX_JUMP_PRESS_DURATION: float = 0.16
 var jump_press_duration: float = 0.0
 
+var health: int = 100
+var mana: int = 10
+
 @onready var anim = get_node("AnimationPlayer")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
