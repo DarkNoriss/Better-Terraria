@@ -33,6 +33,14 @@ ui_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemie"
+2d_physics/layer_4="enemie_area"
+2d_physics/layer_5="drop"
+
 [physics]
 
 2d/default_gravity=1500.0
