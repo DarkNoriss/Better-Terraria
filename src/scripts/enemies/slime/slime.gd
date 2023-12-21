@@ -11,12 +11,12 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = get_node("AnimationPlayer")
 
 var player
+var jumpDirection: String
 var jumpTimer: float = 2.0
-var jumpDirection: String = "left"
 
 
 func _ready():
-	player = get_node("../Player")
+	player = get_node("../../Player")
 
 	anim.play("idle")
 
@@ -55,6 +55,7 @@ func _physics_process(delta):
 	pass
 
 
-func _on_area_2d_body_entered(body):
-	print("ENTERED BODY", body)
-	pass  # Replace with function body.
+func _on_area_2d_body_entered(_body):
+	# print("ENTERED BODY", body)
+
+	pass
