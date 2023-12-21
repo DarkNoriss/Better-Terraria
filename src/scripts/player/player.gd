@@ -72,6 +72,10 @@ func playerJump(delta):
 	):
 		jump_press_duration = MAX_JUMP_PRESS_DURATION
 
+	if Input.is_action_just_pressed("ui_down"):
+		print("DOWN")
+		position.y += 1
+
 
 func setAnimations(direction):
 	if direction == -1:
