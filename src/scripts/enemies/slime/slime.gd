@@ -10,31 +10,23 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var anim = get_node("AnimationPlayer")
 
-var player
+var player: CharacterBody2D
 var jumpTimer: float = 2.0
-var jumpDirection: String = "left"
+var jumpDirection: String
 
 
 func _ready():
-	player = get_node("../Player")
+	player = get_node("../../Player")
 
 	anim.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(_delta: float) -> void:
 	pass
 
 
-func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-		if jumpDirection == "right":
-			velocity.x = speed
-		elif jumpDirection == "left":
-			velocity.x = -speed
-
+func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jumpTimer -= delta
 
@@ -50,11 +42,19 @@ func _physics_process(delta):
 
 			velocity.y -= 500
 
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+		if jumpDirection == "right":
+			velocity.x = speed
+		elif jumpDirection == "left":
+			velocity.x = -speed
+
 	move_and_slide()
 
 	pass
 
 
-func _on_area_2d_body_entered(body):
-	print("ENTERED BODY", body)
+func _on_area_2d_body_entered(_body):
+	# print("ENTERED BODY", body)
 	pass  # Replace with function body.

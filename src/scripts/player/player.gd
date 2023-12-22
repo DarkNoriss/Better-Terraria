@@ -17,16 +17,11 @@ var mana: int = 10
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-
-func _ready():
+func _process(_delta: float) -> void:
 	pass
 
 
-func _process(_delta):
-	pass
-
-
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("ui_left", "ui_right")
 
 	playerJump(delta)
@@ -37,7 +32,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func playerMovement(direction, delta):
+func playerMovement(direction: float, delta: float) -> void:
 	# Apply gravity if the player is not on the floor
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -59,8 +54,8 @@ func playerMovement(direction, delta):
 	if direction == 0:
 		velocity = velocity.move_toward(Vector2(0, velocity.y), DECELERATION * delta)
 
-
-func playerJump(delta):
+ 
+func playerJump(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		jump_press_duration = 0.0
 		velocity.y = JUMP_VELOCITY
@@ -73,7 +68,7 @@ func playerJump(delta):
 		jump_press_duration = MAX_JUMP_PRESS_DURATION
 
 
-func setAnimations(direction):
+func setAnimations(direction: float) -> void:
 	if direction == -1:
 		get_node("AnimatedSprite2D").flip_h = true
 
